@@ -1,10 +1,19 @@
 # ninja log v5
 139	3586	8045382868831745	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	259d52a6a876c9eb
-120	3421	8045382867059046	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	60378f3a59d6cf21
 64	3631	8045382869260587	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	11c9fc552544bef7
-83	2984	8045382862658706	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	55a8dd3a510059cb
+120	3421	8045382867059046	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	60378f3a59d6cf21
 165	3696	8045382870005137	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7698a54a0f96a332
+83	2984	8045382862658706	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	55a8dd3a510059cb
 101	4063	8045382873673611	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b6319924e5fb313e
 39	3046	8045382863038375	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7cc3b3ce39d0b5ef
 21	4023	8045382873313939	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f7869b5ff4439edc
 4063	4463	8045382877764318	C:/Users/mobym/Documents/src/GHOST-client/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2w244w3n/obj/arm64-v8a/libgame.so	85f39188b4238555
+100	3361	8045447911479983	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	55a8dd3a510059cb
+51	3446	8045447912328155	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	11c9fc552544bef7
+259	3746	8045447915408798	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	60378f3a59d6cf21
+328	4005	8045447918020084	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7698a54a0f96a332
+283	5127	8045447926929158	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	259d52a6a876c9eb
+81	5166	8045447928906058	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7cc3b3ce39d0b5ef
+124	6044	8045447937370081	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b6319924e5fb313e
+25	6218	8045447939751539	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f7869b5ff4439edc
+6219	6767	8045447945619964	C:/Users/mobym/Documents/src/GHOST-client/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2w244w3n/obj/arm64-v8a/libgame.so	85f39188b4238555

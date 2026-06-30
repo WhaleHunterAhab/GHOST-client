@@ -1,0 +1,60 @@
+plugins {
+    // If you are changing the Android Gradle Plugin version, make sure it is compatible with the Gradle version preinstalled with Unity
+    // See which Gradle version is preinstalled with Unity here https://docs.unity3d.com/Manual/android-gradle-overview.html
+    // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
+    // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
+    id 'com.android.application' version '9.0.0' apply false
+    id 'com.android.library' version '9.0.0' apply false
+    **BUILD_SCRIPT_DEPS**
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}
+
+// Workaround: OVRPlugin.aar and SDKTelemetry.aar (Meta XR SDK) both declare the
+// namespace "com.oculus.Integration" in their embedded AndroidManifest.xml. The
+// AGP bundled with Unity 6000.3 rejects duplicate namespaces, failing
+// :launcher:processReleaseMainManifest. These AARs are consumed as flatDir
+// dependencies (not subprojects), so the namespace cannot be overridden via the
+// Gradle DSL. Instead, rewrite the telemetry AAR's manifest to a unique package.
+// Unity regenerates libs/ on every export and Gradle runs afterwards, so this
+// runs each build and is idempotent.
+def telemetryAar = new File(rootDir, "unityLibrary/libs/SDKTelemetry.aar")
+if (telemetryAar.exists()) {
+    def patched = new File(telemetryAar.parentFile, "SDKTelemetry.patched.aar")
+    def didPatch = false
+    new java.util.zip.ZipOutputStream(new FileOutputStream(patched)).withCloseable { zout ->
+        new java.util.zip.ZipInputStream(new FileInputStream(telemetryAar)).withCloseable { zin ->
+            def entry
+            byte[] buffer = new byte[8192]
+            while ((entry = zin.nextEntry) != null) {
+                def baos = new ByteArrayOutputStream()
+                int n
+                while ((n = zin.read(buffer)) != -1) {
+                    baos.write(buffer, 0, n)
+                }
+                byte[] data = baos.toByteArray()
+                if (entry.name == "AndroidManifest.xml") {
+                    def text = new String(data, "UTF-8")
+                    def updated = text.replace('package="com.oculus.Integration"',
+                                               'package="com.oculus.sdktelemetry"')
+                    if (updated != text) {
+                        data = updated.getBytes("UTF-8")
+                        didPatch = true
+                    }
+                }
+                zout.putNextEntry(new java.util.zip.ZipEntry(entry.name))
+                zout.write(data)
+                zout.closeEntry()
+            }
+        }
+    }
+    if (didPatch) {
+        telemetryAar.delete()
+        patched.renameTo(telemetryAar)
+        println "Patched SDKTelemetry.aar namespace -> com.oculus.sdktelemetry"
+    } else {
+        patched.delete()
+    }
+}
