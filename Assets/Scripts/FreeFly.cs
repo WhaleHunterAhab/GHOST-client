@@ -1,38 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-/// <summary>
-/// Free-fly locomotion for a Meta (OVR) camera rig. No gravity, no collision, no CharacterController,
-/// and NO scaling — it only ever changes the rig's position/rotation, so you can scale the rig in the
-/// scene however you like and this won't touch it.
-///
-///   - Left thumbstick: fly along where you're looking (look up to climb, down to dive; left/right strafes).
-///   - Right thumbstick X: smooth turn left / right.
-///   - Right thumbstick Y: fly straight up / down.
-///
-/// Turn and up/down are mutually exclusive: whichever axis you push further wins, and a big deadzone
-/// keeps a casual diagonal push from doing either by accident — so you can't turn and rise at once.
-///
-/// Setup:
-///   1. Attach to your Camera Rig (the "[BuildingBlock] Camera Rig" object), or set "Rig To Move".
-///   2. Set "Head" to the rig's CenterEyeAnchor (falls back to Camera.main if left empty).
-///   3. Remove/disable the Unity XRI ContinuousMoveProvider so they don't conflict.
 /// </summary>
 public class FreeFly : MonoBehaviour
 {
-    [Tooltip("The rig root to move. Defaults to this GameObject's transform.")]
     [SerializeField] Transform rigToMove;
-
-    [Tooltip("The head/center-eye transform that defines 'forward'. Defaults to Camera.main.")]
     [SerializeField] Transform head;
-
-    [Tooltip("Fly speed in meters/second. Constant — not affected by rig scale.")]
     [SerializeField] float speed = 3f;
-
-    [Tooltip("Smooth turn speed in degrees/second at full stick.")]
     [SerializeField] float turnSpeed = 60f;
 
-    [Tooltip("Right-stick deadzone. Big on purpose so turn and up/down can't trigger together.")]
     [Range(0f, 0.9f)]
     [SerializeField] float rightStickDeadzone = 0.5f;
 
@@ -72,7 +47,6 @@ public class FreeFly : MonoBehaviour
         if (rigToMove == null || head == null)
             return;
 
-        // Left stick: fly along gaze + strafe.
         Vector2 move = moveAction.ReadValue<Vector2>();
         Vector3 dir = head.forward * move.y + head.right * move.x;
         if (dir.sqrMagnitude > 1f)
@@ -80,7 +54,7 @@ public class FreeFly : MonoBehaviour
         if (dir.sqrMagnitude > 0.0001f)
             rigToMove.position += dir * (speed * Time.deltaTime);
 
-        // Right stick: turn OR up/down, never both. Dominant axis wins, past a big deadzone.
+        // Right stick: turn OR up/down, never both
         Vector2 look = lookAction.ReadValue<Vector2>();
         if (Mathf.Abs(look.x) >= Mathf.Abs(look.y))
         {
