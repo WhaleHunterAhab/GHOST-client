@@ -176,10 +176,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ddfdnksdfsdfsndfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf
+  m_text: fsdajflkjsdlkfjlkasdjlfkjlaksjelkfjdsljfljalksjdlkjflkajslkdjflkasdfasdf
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0f3a0c0c36c7dbc4cb76f415354ef625, type: 2}
-  m_sharedMaterial: {fileID: 3465219245880600672, guid: 0f3a0c0c36c7dbc4cb76f415354ef625, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 21c3d34bf8d383e4d833c58693f16957, type: 2}
+  m_sharedMaterial: {fileID: -639878110190727869, guid: 21c3d34bf8d383e4d833c58693f16957, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -21.34552, y: -28.8871, z: -521.4807, w: -6.5433655}
+  m_margin: {x: -21.34552, y: -28.8871, z: -483.5957, w: -6.5433655}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5055,10 +5055,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 40
-    m_Bottom: 40
+    m_Left: 35
+    m_Right: 35
+    m_Top: 45
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
@@ -7187,7 +7187,7 @@ MonoBehaviour:
   url: ws://10.38.142.73:8000/ws?operator=unity
   logText: {fileID: 11798140}
   scrollRect: {fileID: 227275073}
-  maxLogLines: 0
+  maxLogLines: 2000
 --- !u!1 &1228234130
 GameObject:
   m_ObjectHideFlags: 0
